@@ -39,3 +39,12 @@ Run tests:
 ```bash
 npm test
 ```
+
+
+#### Release
+
+Build the library:
+
+```bash
+gulp release
+```
