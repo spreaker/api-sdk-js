@@ -1,3 +1,3 @@
-var Auth = require('./modules/Auth.js');
+var Auth = require('./Auth.js');
 
 window.SP = Auth;
