@@ -24,7 +24,7 @@ sudo npm install -g wr
 npm install
 ```
 
-Run `serve` and automatically generate the library on src/ changes:
+Run `serve` and automatically build the library on src/ changes:
 
 ```bash
 wr "gulp build" src/
@@ -45,7 +45,7 @@ npm test
 
 #### Release
 
-Build the library:
+Build the library for production:
 
 ```bash
 gulp release
