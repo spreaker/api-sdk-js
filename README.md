@@ -14,9 +14,10 @@
 
 #### Setup
 
-Install `gulp`, `serve` and local node modules:
+Install `browserify`, `gulp`, `serve` and local node modules:
 
 ```bash
+npm install -g browserify
 npm install -g gulp
 npm install -g serve
 npm install
@@ -29,3 +30,12 @@ serve .
 ```
 
 Open your browser at [http://localhost:3000/example/auth.html](http://localhost:3000/example/auth.html)
+
+
+#### Tests
+
+Run tests:
+
+```bash
+npm test
+```
