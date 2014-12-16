@@ -2,15 +2,14 @@
 <html>
 <head></head>
 <body>
-    <h2>How to use Spreaker Connect</h2>
+    <h2>How to use Spreaker Connect (async version)</h2>
     <p>Click to "Connect" and check out the page sources to see how it works.</p>
 
 
-    <script src="/lib/spreaker.js"></script>
     <script>
-        SP.init({ app_id: 12, env: "dev", redirect_uri: "http://localhost:3000/example/auth_callback.html" });
+        function onInitialized() {}
 
-        function connect() {
+        function onConnectClick() {
             SP.connect(function(res) {
                 if (res.error) {
                     alert("Error: " + res.error_description);
@@ -19,9 +18,14 @@
                 }
             });
         }
+
+        var _sp = _sp || [];
+        _sp.push(['init', { app_id: 12, env: "dev", redirect_uri: "http://localhost:3000/example/auth_callback.html", initialized: onInitialized }]);
     </script>
 
+    <script src="/lib/spreaker.js" async></script>
 
-    <a href="#" onclick="connect(); return false;">Connect</a>
+
+    <a href="#" onclick="onConnectClick(); return false;">Connect</a>
 
 </body>

@@ -29,6 +29,7 @@ function _getAuthUrl(type, scope) {
  * Supported config:
  * - app_id         Required    Your application id
  * - redirect_uri   Optional    OAuth2 redirect uri
+ * - initialized    Optional    Function invoked on library initialized
  *
  * @param  {Object} config
  */
@@ -44,6 +45,11 @@ function init(config) {
     config.csrf = "" + Math.random();
 
     _config = config;
+
+    // Notify
+    if (config.initialized) {
+        config.initialized();
+    }
 }
 
 /**

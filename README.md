@@ -31,7 +31,7 @@ wr "gulp build" src/
 serve .
 ```
 
-Open your browser at [http://localhost:3000/example/auth.html](http://localhost:3000/example/auth.html)
+Open your browser at [http://localhost:3000/example/auth_sync.html](http://localhost:3000/example/auth_sync.html)
 
 
 #### Tests
