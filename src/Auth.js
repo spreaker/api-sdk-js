@@ -5,8 +5,9 @@ window.SP = function() {
     var BASE_URL  = { prod: "//www.spreaker.com", beta: "//www.spreaker-beta.com", dev: "//www.dev-spreaker.com" },
         AUTH_PATH = "/oauth2/authorize";
 
-    var _config = {},
-        _state  = {};
+    var _config  = {},
+        _connect,
+        _token;
 
 
     function _getBaseUrl() {
@@ -65,15 +66,14 @@ window.SP = function() {
             }
 
             // Update state
-            _state.connect = options;
+            _connect = options;
 
             // Open popup
-            var width  = 600;
-            var height = 400;
-            var left   = window.screenX + (window.outerWidth - width) / 2;
-            var top    = window.screenY + (window.outerHeight - height) / 2;
-
-            _state.connect.window = window.open(_getAuthUrl(options.type || "token", options.scope || "basic"), "", "left=" + left + ",top=" + top + ",height=" + height + ",width=" + width + ",toolbar=no,scrollbars=yes");
+            _connect.popup_id = SP.Popup.open(_getAuthUrl(options.type || "token", options.scope || "basic"), {
+                width:  600,
+                height: 400,
+                closed: SP.connectCallback
+            });
         },
 
         /**
@@ -81,40 +81,54 @@ window.SP = function() {
          */
         connectCallback: function() {
 
-            if (!_state.connect) {
+            if (!_connect) {
                 return;
             }
 
-            // Update state
-            var popup    = _state.connect.window;
-            var callback = _state.connect.callback;
+            // Get data
+            var popup_id = _connect.popup_id;
+            var callback = _connect.callback;
 
-            _state.connect = undefined;
+            // Update state
+            _connect = undefined;
 
             // Parse response
-            var params = SP.Util.parseUrlParams(popup.location.hash || popup.location.search);
+            var res, win = SP.Popup.getWindow(popup_id);
+            if (win) {
+                res = SP.Util.parseUrlParams(win.location.hash || win.location.search);
+            } else {
+                res = { state: _config.csrf, error: "canceled", error_description: "The user closed the popup." };
+            }
 
             // Check CSRF
-            if (!params.state) {
+            if (!res.state) {
                 throw new Error("Connect callback invoked, but 'state' is missing.");
             }
-            if (params.state !== _config.csrf) {
+            if (res.state !== _config.csrf) {
                 throw new Error("Connect callback invoked, but 'state' doesn't match.");
             }
 
-            // Update state
-            // TODO aggiornare il token dell'utente
+            // Save access token
+            _token = res.access_token || undefined;
+
+            // Close popup
+            SP.Popup.close(popup_id);
 
             // Notify callback
             if (callback) {
-                callback(params);
+                callback(res);
             }
         },
 
-        // TODO
+        connectCanceled: function() {
+            // TODO
+            alert("canceled");
+        },
+
         disconnect: function() {
 
-
+            // Reset token
+            _token = undefined;
         }
 
     };
