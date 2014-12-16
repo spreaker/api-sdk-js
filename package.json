@@ -1,0 +1,17 @@
+{
+    "name": "spreaker-sdk-js",
+    "version": "0.1.0",
+    "description": "Spreaker API SDK - Javascript",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/spreaker/api-sdk-js"
+    },
+    "keywords": [ "spreaker", "api", "js", "javscript" ],
+    "author": "Spreaker Team <dev@spreaker.com>",
+    "contributors": [ "Marco Pracucci <marco.pracucci@spreaker.com>", "Rocco Zanni <rocco.zanni@spreaker.com>" ],
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/spreaker/api-sdk-js/issues"
+    },
+    "homepage": "https://github.com/spreaker/api-sdk-js"
+}
