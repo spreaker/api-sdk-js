@@ -17,9 +17,9 @@
 Install `browserify`, `gulp`, `serve` and local node modules:
 
 ```bash
-npm install -g browserify
-npm install -g gulp
-npm install -g serve
+sudo npm install -g browserify
+sudo npm install -g gulp
+sudo npm install -g serve
 npm install
 ```
 
