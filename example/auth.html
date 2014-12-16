@@ -1,7 +1,6 @@
+<!DOCTYPE html>
 <html>
-<head>
-
-</head>
+<head></head>
 <body>
     <h2>How to use Spreaker Connect</h2>
     <p>Click to "Connect" and check out the page sources to see how it works.</p>
@@ -9,11 +8,11 @@
 
     <script src="/lib/spreaker.js"></script>
     <script>
-        SP.init({ app_id: 1, env: "dev" });
+        SP.init({ app_id: 12, env: "dev", redirect_uri: "http://localhost:3000/example/auth_callback.html" });
 
         function connect() {
-            SP.connect(function() {
-                alert("Connect callback");
+            SP.connect(function(data) {
+                alert("Connected: " + JSON.stringify(data));
             });
         }
     </script>

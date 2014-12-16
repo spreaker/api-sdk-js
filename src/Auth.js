@@ -1,12 +1,13 @@
 
+// TODO spostare redirect_uri alla connect?
+// TODO aggiungere il supporto al parametro scope (defaults to "basic")
 window.SP = function() {
 
-    // Static config
     var BASE_URL  = { prod: "//www.spreaker.com", beta: "//www.spreaker-beta.com", dev: "//www.dev-spreaker.com" },
         AUTH_PATH = "/oauth2/authorize";
 
-    // User config
-    var _config = {};
+    var _config = {},
+        _state  = {};
 
 
     function _getBaseUrl() {
@@ -14,7 +15,7 @@ window.SP = function() {
     }
 
     function _getAuthUrl(type) {
-        return SP.Util.buildUrl(_getBaseUrl() + AUTH_PATH, { client_id: _config.app_id, response_type: type, state: _config.csrf });
+        return SP.Util.buildUrl(_getBaseUrl() + AUTH_PATH, { client_id: _config.app_id, response_type: type, state: _config.csrf, redirect_uri: _config.redirect_uri });
     }
 
 
@@ -22,7 +23,8 @@ window.SP = function() {
 
         /**
          * Supported config:
-         * - app_id     Required    Your application id
+         * - app_id         Required    Your application id
+         * - redirect_uri   Optional    OAuth2 redirect uri
          *
          * @param  {Object} config
          */
@@ -30,12 +32,12 @@ window.SP = function() {
 
             // Check parameters
             if (!config.app_id) {
-                throw new Error("The param 'app_id' is required");
+                throw new Error("The param 'app_id' is required.");
             }
 
             // Defaults
             config.env  = config.env || "prod";
-            config.csrf = Math.random();
+            config.csrf = "" + Math.random();
 
             _config = config;
         },
@@ -44,8 +46,8 @@ window.SP = function() {
          * Initiates auth flow.
          *
          * Supported options:
-         * - connected  Optional    Function invoked on connect success
-         * - type       Optional    "token" or "code" (defaults to token)
+         * - callback  Optional    Function invoked on connect success
+         * - type      Optional    "token" or "code" (defaults to token)
          *
          * @param  {Mixed} options
          */
@@ -53,17 +55,50 @@ window.SP = function() {
 
             // Input can be an object or callback function
             if (typeof options === "function") {
-                options = { connected: options };
+                options = { callback: options };
             }
+
+            // Update state
+            _state.connect = options;
 
             // Open popup
             var width  = 600;
             var height = 400;
             var left   = window.screenX + (window.outerWidth - width) / 2;
             var top    = window.screenY + (window.outerHeight - height) / 2;
-            var popup  = window.open(_getAuthUrl(options.type || "token"), "", "left=" + left + ",top=" + top + ",height=" + height + ",width=" + width + ",toolbar=no,scrollbars=yes");
+
+            _state.connect.window = window.open(_getAuthUrl(options.type || "token"), "", "left=" + left + ",top=" + top + ",height=" + height + ",width=" + width + ",toolbar=no,scrollbars=yes");
         },
 
+        /**
+         * Invoked by popup window on connect completed.
+         */
+        connectCallback: function() {
+
+            if (!_state.connect) {
+                return;
+            }
+
+            // Parse response
+            var popup  = _state.connect.window;
+            var params = SP.Util.parseUrlParams(popup.location.hash || popup.location.search);
+
+            // Check CSRF
+            if (!params.state) {
+                throw new Error("Connect callback invoked, but 'state' is missing.");
+            }
+            if (params.state !== _config.csrf) {
+                throw new Error("Connect callback invoked, but 'state' doesn't match.");
+            }
+
+            // Notify callback
+            if (_state.connect.callback) {
+                _state.connect.callback(params);
+            }
+
+            // Update state
+            _state.connect = undefined;
+        },
 
         // TODO
         disconnect: function() {
