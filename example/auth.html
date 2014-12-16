@@ -4,13 +4,18 @@
 </head>
 <body>
 
-    <script src="//"></script>
-
+    <script src="/lib/spreaker.js"></script>
     <script>
-        SP.init({ app_id: 1 });
-        SP.connect(function() {
-            alert("Connect callback");
-        });
+        SP.init({ app_id: 1, env: "dev" });
+
+        function connect() {
+            SP.connect(function() {
+                alert("Connect callback");
+            });
+        }
     </script>
+
+
+    <a href="#" onclick="connect(); return false;">Connect</a>
 
 </body>
