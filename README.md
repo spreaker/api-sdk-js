@@ -20,12 +20,14 @@ Install `browserify`, `gulp`, `serve` and local node modules:
 sudo npm install -g browserify
 sudo npm install -g gulp
 sudo npm install -g serve
+sudo npm install -g wr
 npm install
 ```
 
-Run `serve`:
+Run `serve` and automatically generate the library on src/ changes:
 
 ```bash
+wr "gulp build" src/
 serve .
 ```
 
