@@ -11,8 +11,12 @@
         SP.init({ app_id: 12, env: "dev", redirect_uri: "http://localhost:3000/example/auth_callback.html" });
 
         function connect() {
-            SP.connect(function(data) {
-                alert("Connected: " + JSON.stringify(data));
+            SP.connect(function(res) {
+                if (res.error) {
+                    alert("Error: " + res.error_description);
+                } else {
+                    alert("Connected: " + JSON.stringify(res));
+                }
             });
         }
     </script>

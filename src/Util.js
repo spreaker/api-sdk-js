@@ -37,7 +37,7 @@ window.SP.Util = function() {
 
             for (var i = 0; i < parts.length; i++) {
                 var name  = parts[i].substring(0, parts[i].indexOf("="));
-                var value = decodeURIComponent(parts[i].substring(parts[i].indexOf("=") + 1));
+                var value = decodeURIComponent(parts[i].substring(parts[i].indexOf("=") + 1)).replace(/\+/g, ' ');
                 out[name] = value;
             }
 
