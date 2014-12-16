@@ -60,41 +60,6 @@ window.SP = function() {
             var left  = window.screenX + (window.outerWidth - options.width) / 2;
             var top   = window.screenY + (window.outerHeight - options.height) / 2;
             var popup = window.open(_getAuthUrl(options.type || "token"), "", "left=" + left + ",top=" + top + ",height=400,width=600,toolbar=no,scrollbars=yes");
-
-
-            /*
-            dialogOptions = {
-                client_id: options.client_id || SC.options.client_id,
-                redirect_uri: options.redirect_uri || SC.options.redirect_uri,
-                response_type: "code_and_token",
-                scope: options.scope || "non-expiring",
-                display: "popup",
-                window: options.window,
-                retainWindow: options.retainWindow
-            };
-            if (dialogOptions.client_id && dialogOptions.redirect_uri) {
-                dialog = SC.dialog(SC.Dialog.CONNECT, dialogOptions, function(params) {
-                    if (params.error != null) {
-                        throw new Error("SC OAuth2 Error: " + params.error_description)
-                    } else {
-                        SC.accessToken(params.access_token);
-                        if (options.connected != null) {
-                            options.connected()
-                        }
-                    }
-                    if (options.callback != null) {
-                        return options.callback()
-                    }
-                });
-                this._connectWindow = dialog.options.window;
-                return dialog
-            } else {
-                throw "Options client_id and redirect_uri must be passed"
-            }
-            */
-
-
-
         },
 
 
