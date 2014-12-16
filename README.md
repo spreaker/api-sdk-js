@@ -4,11 +4,11 @@
 
 The latest stable release of the JS SDK is hosted on CloudFront CDN at the following urls. Please load the SDK from these urls instead of serving it from your own webserver, so that fixed get automatically applied once release:
 
-[http://d1sojsgu0jwtb7.cloudfront.net/sdk/js/spreaker.js]
-[http://d1sojsgu0jwtb7.cloudfront.net/sdk/js/spreaker.js.gz]
+[http://d1sojsgu0jwtb7.cloudfront.net/sdk/js/spreaker.js]()
+[http://d1sojsgu0jwtb7.cloudfront.net/sdk/js/spreaker.js.gz]()
 
-[https://d1sojsgu0jwtb7.cloudfront.net/sdk/js/spreaker.js]
-[https://d1sojsgu0jwtb7.cloudfront.net/sdk/js/spreaker.js.gz]
+[https://d1sojsgu0jwtb7.cloudfront.net/sdk/js/spreaker.js]()
+[https://d1sojsgu0jwtb7.cloudfront.net/sdk/js/spreaker.js.gz]()
 
 
 ### Supported Browsers
