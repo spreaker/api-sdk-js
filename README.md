@@ -28,4 +28,4 @@ Run `serve`:
 serve .
 ```
 
-Open your browser at [](http://localhost:3000/example/auth.html)
+Open your browser at http://localhost:3000/example/auth.html
