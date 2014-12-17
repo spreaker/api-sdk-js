@@ -68,8 +68,8 @@ function connect(options) {
 
     // Open popup
     _connect.popup_id = Popup.open(_getAuthUrl(options.type || "token", options.scope || "basic"), {
-        width:  600,
-        height: 400,
+        width:  500,
+        height: 500,
         closed: connectCallback
     });
 }
