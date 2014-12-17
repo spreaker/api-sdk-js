@@ -11,6 +11,11 @@ The latest stable release of the JS SDK is hosted on CloudFront CDN at the follo
 [https://d1sojsgu0jwtb7.cloudfront.net/sdk/js/spreaker.js.gz]()
 
 
+### Authentication (OAuth2)
+
+This library provides methods to easily authenticate on Spreaker from a 3rd party website / app. Checkout the `example/` folder and get more details at [http://developers.spreaker.com]().
+
+
 ### Supported Browsers
 
  * IE8+
