@@ -2,7 +2,7 @@ var Popup = require('./Popup.js'),
     Util  = require('./Util.js');
 
 // Config
-var BASE_URL  = { prod: "//www.spreaker.com", beta: "//www.spreaker-beta.com", dev: "//www.dev-spreaker.com" },
+var BASE_URL  = { prod: "https://www.spreaker.com", beta: "https://www.spreaker-beta.com", dev: "http://www.dev-spreaker.com" },
     AUTH_PATH = "/oauth2/authorize";
 
 var _config  = {},
