@@ -25,6 +25,11 @@ This library provides methods to easily authenticate on Spreaker from a 3rd part
  * Opera
 
 
+### Help
+
+Do you need help? Open an issue or contact us at [http://help.spreaker.com]().
+
+
 ### Contribute
 
 #### Setup
