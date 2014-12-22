@@ -2,7 +2,7 @@
 
 ### CDN
 
-The latest stable release of the JS SDK is hosted on CloudFront CDN at the following urls. Please load the SDK from these urls instead of serving it from your own webserver, so that fixed get automatically applied once release:
+The latest stable release of the JS SDK is hosted on CloudFront CDN at the following urls. Please load the SDK from these urls instead of serving it from your own webserver, so that fixes get automatically applied once released:
 
 http://d1sojsgu0jwtb7.cloudfront.net/sdk/js/spreaker.js
 http://d1sojsgu0jwtb7.cloudfront.net/sdk/js/spreaker.js.gz
@@ -13,7 +13,7 @@ https://d1sojsgu0jwtb7.cloudfront.net/sdk/js/spreaker.js.gz
 
 ### Authentication (OAuth2)
 
-This library provides methods to easily authenticate on Spreaker from a 3rd party website / app. Checkout the `example/` folder and get more details at http://developers.spreaker.com.
+This library provides methods on how to easily authenticate on Spreaker from a 3rd party website / app. Checkout the `example/` folder and get more details at http://developers.spreaker.com.
 
 
 ### Supported Browsers
