@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+    <h2>API Calls</h2>
+
+    <!-- Auth -->
+    <a href="#" onclick="connect(); return false;">Connect</a>
+
+    <!-- Request -->
+    <h3>Api Request</h3>
+    <input type="submit" value="GET /user/1" onclick="SP.get('/user/1', {}, _onResponse); return false;" />
+    <input type="submit" value="GET /whoami" onclick="SP.get('/whoami', {}, _onResponse); return false;" />
+
+    <!-- Response -->
+    <h3>Api Response</h3>
+    <pre id="monitor">
+
+    </pre>
+
+
+    <script src="/lib/spreaker.js"></script>
+    <script>
+        SP.init({ app_id: 1002, redirect_uri: "http://localhost:3000/example/auth_callback.html" });
+
+        function connect() {
+            SP.connect(function(res) {
+                if (res.error) {
+                    return alert("Error: " + res.error_description);
+                }
+
+                // alert("Connected: " + JSON.stringify(res));
+                res.access_token;
+            });
+        }
+
+        function _onResponse(res) {
+            document.getElementById('monitor').innerHTML = JSON.stringify(res, undefined, 4);
+        }
+
+    </script>
+
+</body>

@@ -130,5 +130,9 @@ module.exports = {
     init:            init,
     connect:         connect,
     connectCallback: connectCallback,
-    disconnect:      disconnect
+    disconnect:      disconnect,
+
+    getAccessToken:  function() {
+        return _token;
+    }
 };
