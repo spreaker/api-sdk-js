@@ -32,6 +32,7 @@
     "gulp-uglify": "^1.0.2",
     "mocha": "^2.0.1"
   },
+  "main": "lib/spreaker.js",
   "scripts": {
     "test": "mocha ${MOCHA_OPTIONS} -R spec --recursive ./test"
   }
